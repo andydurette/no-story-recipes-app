@@ -20,9 +20,11 @@ export enum cuisineEnum {
     cuisineQuery: string | null,
     recipeQueryString: string | null
   ): Promise<CreateRecipe[] | undefined> {
+
+    const apiUrl = process.env.EXPO_PUBLIC_BACKEND_URL_PATH;
     let constructUrl = `${
-      process.env.NEXT_PUBLIC_BACKEND_URL_PATH
-        ? process.env.NEXT_PUBLIC_BACKEND_URL_PATH
+      apiUrl
+        ? apiUrl
         : "http://localhost:4000"
     }/recipe/queryRecipe`;
     if (cuisineQuery || recipeQueryString) {

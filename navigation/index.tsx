@@ -10,8 +10,8 @@ import TabIconContainer from "../components/icons/TabIconContainer";
 import { HomeNavigator } from "./HomeNavigator";
 import { RecipesNavigator } from "./RecipesNavigator";
 import { SettingsNavigator } from "./SettingsNavigator";
-import QRIcon from "../components/icons/QRIcon";
-import WalletIcon from "../components/icons/WalletIcon";
+import HomeIcon from "../components/icons/Home";
+import GearIcon from "../components/icons/Gear";
 
 const BottomTabStack = createBottomTabNavigator<BottomTabStackParamList>();
 
@@ -43,7 +43,7 @@ const BottomTabNavigator = () => {
           title: "Home",
           tabBarIcon: ({ focused }) => (
             <TabIconContainer focused={focused}>
-              <WalletIcon focused={focused} />
+              <HomeIcon focused={focused} />
             </TabIconContainer>
           ),
         }}
@@ -58,7 +58,7 @@ const BottomTabNavigator = () => {
           title: "Recipes",
           tabBarIcon: ({ focused }) => (
             <TabIconContainer focused={focused}>
-              <QRIcon focused={focused} />
+              <GearIcon focused={focused} />
             </TabIconContainer>
           ),
         }}
@@ -73,7 +73,7 @@ const BottomTabNavigator = () => {
           title: "Settings",
           tabBarIcon: ({ focused }) => (
             <TabIconContainer focused={focused}>
-              {/* <QRIcon focused={focused} /> */}
+              <GearIcon focused={focused} />
             </TabIconContainer>
           ),
         }}

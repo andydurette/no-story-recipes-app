@@ -32,8 +32,8 @@ module.exports = {
         heading1: 'text-3xl font-bold',
         heading2: 'text-xl font-bold',
         heading3: 'text-lg font-bold',
-        paragraph: 'text-base font-sans text-gray-500',
-        smallParagraph: 'text-sm font-sans text-gray-500',
+        paragraph: 'text-base font-sans text-black',
+        smallParagraph: 'text-sm font-sans text-black',
       });
     }),
   ],
