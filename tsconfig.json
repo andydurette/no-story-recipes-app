@@ -1,0 +1,11 @@
+{
+  "compilerOptions": {
+    "lib": ["DOM", "ES2022"],
+    "strictNullChecks": true,
+    "jsx": "react-jsx"
+  },
+  "extends": "expo/tsconfig.base",
+  "strict": true,
+  "typeRoots": ["./types"],
+  "exclude": ["node_modules", "dist"]
+}
