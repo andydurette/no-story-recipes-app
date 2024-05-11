@@ -12,7 +12,9 @@ const TabIconContainer = ({
 }: PropsWithChildren<TabIconContainer>) => {
   return (
     <View style={tw``}>
-      {focused && <View style={tw`w-12 absolute -top-2 -left-2 h-1 bg-tang`} />}
+      {focused && (
+        <View style={tw`w-12 absolute -top-2 -left-2 h-1 bg-primary-100`} />
+      )}
       <View>{children}</View>
     </View>
   );

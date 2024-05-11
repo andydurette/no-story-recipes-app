@@ -23,6 +23,10 @@ export default ({ config }) => {
       bundleIdentifier: 'com.andydurette.nostoryrecipes',
     },
     android: {
+      androidStatusBar: {
+        "backgroundColor": "#FFF",
+        "translucent": false
+      },
       adaptiveIcon: {
         foregroundImage: './assets/adaptive-icon.png',
         backgroundColor: '#FFFFFF',

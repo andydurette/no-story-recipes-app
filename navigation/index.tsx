@@ -1,7 +1,6 @@
 import { BottomTabStackParamList } from "./navigation";
 import { NavigationContainer } from "@react-navigation/native";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-
 import { Platform } from "react-native";
 import tw from "../lib/tailwind";
 import { BottomSheetModalProvider } from "@gorhom/bottom-sheet";
@@ -31,7 +30,10 @@ const BottomTabNavigator = () => {
       initialRouteName="Home"
       screenOptions={{
         header: (props) => <Header {...props} />,
-        tabBarStyle: tw.style(Platform.OS === "ios" ? "h-23" : "h-18 pb-3"),
+        tabBarStyle: tw.style(
+          Platform.OS === "ios" ? "h-23" : "h-18 pb-3",
+          "bg-primary-100 text-primary-100"
+        ),
       }}
     >
       <BottomTabStack.Screen
@@ -41,6 +43,7 @@ const BottomTabNavigator = () => {
           unmountOnBlur: true,
           headerShown: false,
           title: "Home",
+          tabBarLabelStyle: tw.style("text-white"),
           tabBarIcon: ({ focused }) => (
             <TabIconContainer focused={focused}>
               <HomeIcon focused={focused} />
@@ -56,6 +59,7 @@ const BottomTabNavigator = () => {
           unmountOnBlur: true,
           headerShown: false,
           title: "Recipes",
+          tabBarLabelStyle: tw.style("text-white"),
           tabBarIcon: ({ focused }) => (
             <TabIconContainer focused={focused}>
               <GearIcon focused={focused} />
@@ -71,6 +75,7 @@ const BottomTabNavigator = () => {
           unmountOnBlur: true,
           headerShown: false,
           title: "Settings",
+          tabBarLabelStyle: tw.style("text-white"),
           tabBarIcon: ({ focused }) => (
             <TabIconContainer focused={focused}>
               <GearIcon focused={focused} />

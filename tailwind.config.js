@@ -11,11 +11,15 @@ module.exports = {
     colors: {
       white: '#ffffff',
       black: '#000000',
-      tang: "#d26011",
-      "dark-tang": "#ac5125",
-      "light-grey": "#374151",
-      "medium-grey": "#212832",
-      "heavy-grey": "#1b1f20",
+      primary: {
+        100: "#d26011",
+        200: "#ac5125"
+      }, 
+      gray: {
+        100: "#374151",
+        200: "#212832",
+        300: "#1b1f20"
+      }
     },
     screens: {
       xs: '320px',
