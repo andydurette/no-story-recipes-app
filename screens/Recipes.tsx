@@ -37,12 +37,9 @@ const Recipes = ({ navigation }) => {
         {recipes &&
           recipes.map((recipe) => {
             return (
-              <View
-                style={tw`flex justify-center p-4 border-2-red `}
-                key={recipe.id}
-              >
+              <View style={tw`flex justify-center m-4 `} key={recipe.id}>
                 <Image
-                  style={tw`w-full h-60 rounded-lg`}
+                  style={tw`w-full h-60 rounded-xl`}
                   source={recipe.photoURL}
                   placeholder={{ blurhash }}
                   contentFit="cover"
