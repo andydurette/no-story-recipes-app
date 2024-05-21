@@ -11,7 +11,7 @@ import { RecipesNavigator } from "./RecipesNavigator";
 import { SettingsNavigator } from "./SettingsNavigator";
 import HomeIcon from "../components/icons/Home";
 import GearIcon from "../components/icons/Gear";
-import PaperIcon from "../components/icons/Paper";
+import PotIcon from "../components/icons/Pot";
 
 const BottomTabStack = createBottomTabNavigator<BottomTabStackParamList>();
 
@@ -63,7 +63,7 @@ const BottomTabNavigator = () => {
           tabBarLabelStyle: tw.style("text-white"),
           tabBarIcon: ({ focused }) => (
             <TabIconContainer focused={focused}>
-              <PaperIcon focused={focused} />
+              <PotIcon focused={focused} />
             </TabIconContainer>
           ),
         }}

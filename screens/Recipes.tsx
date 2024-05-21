@@ -1,13 +1,15 @@
 import { SafeAreaView, ScrollView, Text, View } from "react-native";
 import tw from "../lib/tailwind";
-import { CreateRecipe, fetchRecipes } from "../lib/recipeApiCalls";
+import { fetchRecipes } from "../lib/recipeApiCalls";
 import { useEffect, useState } from "react";
 import { Image } from "expo-image";
+import NavButton from "../components/button/NavButton";
+import { Recipe } from "../types";
 
 const Recipes = ({ navigation }) => {
   type Cuisine = "All Cuisine" | "American" | "Japanese" | "Mexican";
 
-  const [recipes, setRecipes] = useState<CreateRecipe[] | undefined>();
+  const [recipes, setRecipes] = useState<Recipe[] | undefined>();
   const [cuisine, setCuisine] = useState<Cuisine>("All Cuisine");
   const [searchInput, setSearchInput] = useState<string>("");
 
@@ -45,7 +47,15 @@ const Recipes = ({ navigation }) => {
                   contentFit="cover"
                   transition={1000}
                 />
-                <Text style={tw`w-full h-6 text-white`}>{recipe.name}</Text>
+                <NavButton
+                  textStyle="text-white"
+                  text={recipe.name}
+                  onPress={() =>
+                    navigation.navigate("Recipe", {
+                      recipe,
+                    })
+                  }
+                />
               </View>
             );
           })}

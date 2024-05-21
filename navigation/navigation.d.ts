@@ -4,6 +4,7 @@ export type HomeStackParamList = {
 
 export type RecipesStackParamList = {
 	Index: undefined;
+	Recipe: CreateRecipe;
 };
 
 export type SettingsStackParamList = {
@@ -15,3 +16,9 @@ export type BottomTabStackParamList = {
 	Recipes: NavigatorScreenParams<RecipeStackParamList>;
 	Settings: NavigatorScreenParams<SettingsStackParamList>;
 };
+
+export type RootNavigationProp = NavigationProp<
+	NativeStackNavigationProp<HomeStackParamList>,
+	NativeStackNavigationProp<RecipesStackParamList>,
+	NativeStackNavigationProp<SettingsStackParamList>,
+>;
