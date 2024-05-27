@@ -10,7 +10,7 @@ import { Recipe } from "../types";
       apiUrl
         ? apiUrl
         : "http://localhost:4000"
-    }/recipe/queryRecipes`;
+    }/recipes/queryRecipes`;
     if (cuisineQuery || recipeQueryString) {
       constructUrl = constructUrl + "?";
     }
@@ -40,7 +40,7 @@ import { Recipe } from "../types";
           process.env.NEXT_PUBLIC_BACKEND_URL_PATH
             ? process.env.NEXT_PUBLIC_BACKEND_URL_PATH
             : "http://localhost:4000"
-        }/recipe/displayUrl/${displayUrl}`
+        }/recipes/displayUrl/${displayUrl}`
       );
       if (!res.ok) throw new Error("Fetch Recipes error!");
       const data: Recipe = await res.json();
