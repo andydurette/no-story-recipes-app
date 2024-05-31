@@ -27,20 +27,22 @@ const Home = ({ navigation }) => {
         contentContainerStyle={tw`flex-grow justify-between`}
       >
         <View
-          style={tw`flex flex-row justify-center mb-5 px-4 pt-4 content-center items-start`}
+          style={tw`flex flex-row justify-center mb-5 px-4 pt-2 content-center items-start`}
         >
-          <Text accessibilityRole="header" style={tw`heading1 p-2 text-white `}>
+          <Text
+            accessibilityRole="header"
+            style={tw`heading1 px-2 text-white pt-4`}
+          >
             No <Text style={tw`text-primary-100`}>biographies</Text>, no{" "}
             <Text style={tw`text-primary-100`}>history</Text> lessons, just
             recipes
           </Text>
         </View>
-
-        <View style={tw`flex flex-row justify-center mb-5 p-2`}>
-          <Mixer width={300} height={300} />
+        <View style={tw`flex flex-row justify-center`}>
+          <Mixer width={225} height={225} />
         </View>
-        <View style={tw`flex-row justify-between mb-5 p-2 items-center `}>
-          <Text accessibilityRole="header" style={tw`heading3 text-white p-2`}>
+        <View style={tw`flex-row justify-between px-2  items-center `}>
+          <Text accessibilityRole="header" style={tw`heading3 text-white`}>
             Latest Recipes
           </Text>
         </View>

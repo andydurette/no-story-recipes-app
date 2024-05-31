@@ -20,8 +20,8 @@ const Mixer = ({ width, height }: MixerIconProps) => {
       y="0px"
       width={width}
       height={height}
-      viewBox="0 0 864 864"
-      enable-background="new 0 0 864 864"
+      viewBox="100 100 700 700"
+      enable-background="new 100 100 700 700"
     >
       <G id="Layer_2"></G>
       <G id="Layer_1" display="none">
