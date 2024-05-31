@@ -17,7 +17,7 @@
     "@react-navigation/native-stack": "^6.9.8",
     "@types/react": "~18.2.45",
     "expo-constants": "~15.4.6",
-    "expo-dev-client": "~3.3.11",
+    "expo-dev-client": "~3.3.12",
     "expo-image": "~1.10.6",
     "expo-linking": "~6.2.2",
     "expo-status-bar": "~1.11.1",
