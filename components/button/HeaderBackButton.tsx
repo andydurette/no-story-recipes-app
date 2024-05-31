@@ -21,10 +21,10 @@ const HeaderBackButton = ({ onPress, label }: HeaderBackButtonProps) => {
     <TouchableOpacity
       accessibilityRole="link"
       onPress={onPress || goBack}
-      style={tw.style("flex-row gap-2", !label && "absolute top-14 left-4")}
+      style={tw.style("flex-row gap-2", !label && "absolute")}
     >
       <ChevronLeft width={24} height={24} stroke={theme.colors.white} />
-      {label && <Text style={tw` text-white`}>Back</Text>}
+      {label && <Text style={tw` text-white`}></Text>}
     </TouchableOpacity>
   );
 };

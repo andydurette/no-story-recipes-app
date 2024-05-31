@@ -11,35 +11,38 @@ type RecipeProps = NativeStackScreenProps<RecipesStackParamList, "Recipe">;
 const Recipe = ({ route, navigation }: RecipeProps) => {
   const { recipe } = route.params;
 
-  const blurhash =
-    "|rF?hV%2WCj[ayj[a|j[az_NaeWBj@ayfRayfQfQM{M|azj[azf6fQfQfQIpWXofj[ayj[j[fQayWCoeoeaya}j[ayfQa{oLj?j[WVj[ayayj[fQoff7azayj[ayj[j[ayofayayayj[fQj[ayayj[ayfjj[j[ayjuayj[";
-
   return (
     <SafeAreaView style={tw`bg-black flex-1`}>
-      <HeaderBackButton label />
+      <View style={tw`flex flex-row items-center p-2`}>
+        <HeaderBackButton label />
+        <Text style={tw`text-white text-lg justify-center pl-4`}>
+          {recipe.name}
+        </Text>
+      </View>
+
       <ScrollView
         persistentScrollbar
         contentContainerStyle={tw`flex-grow justify-between`}
       >
-        <View style={tw`flex-row justify-between mb-5 p-2`}>
+        <View style={tw`flex flex-row justify-center`}></View>
+        {/* <View style={tw`flex-row justify-between mb-5 p-2`}>
           <Text accessibilityRole="header" style={tw`heading3 text-white`}>
             Recipe
           </Text>
-        </View>
+        </View> */}
         {recipe && (
-          <View style={tw`flex justify-center m-4 `} key={recipe.id}>
+          <View style={tw`flex justify-center`} key={recipe.id}>
             <Image
-              style={tw`w-full h-60 rounded-xl`}
+              style={tw`w-full h-60 rounded-b-xl`}
               source={recipe.photoURL}
-              placeholder={{ blurhash }}
               contentFit="cover"
               transition={1000}
             />
-            <Text style={tw`w-full h-6 text-white`}>{recipe.name}</Text>
           </View>
         )}
-        <Text>Ingredients</Text>
+
         <View style={tw`flex justify-center m-4 `}>
+          <Text style={tw`heading1 text-white`}>Ingredients</Text>
           {recipe &&
             recipe.ingredients.map((r: string, i: number) => {
               return (
@@ -48,13 +51,13 @@ const Recipe = ({ route, navigation }: RecipeProps) => {
                 </Text>
               );
             })}
-          <Text>Directions</Text>
+          <Text style={tw`heading1 text-white`}>Directions</Text>
           {recipe &&
-            recipe.ingredients.map((r: string, i: number) => {
+            recipe.directions.map((r: string, i: number) => {
               return (
                 <View key={`${r}${i}`}>
-                  <Text style={tw`w-full h-6 text-white`}>Step {i + 1}</Text>
-                  <Text style={tw`w-full h-6 text-white`}>{r}</Text>
+                  <Text style={tw`w-full text-white`}>Step {i + 1}</Text>
+                  <Text style={tw`w-full text-white`}>{r}</Text>
                 </View>
               );
             })}
