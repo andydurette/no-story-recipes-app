@@ -14,7 +14,7 @@ export default ({ config }) => {
     splash: {
       image: './assets/splash.png',
       resizeMode: 'contain',
-      backgroundColor: '#ffffff',
+      backgroundColor: '#000000',
     },
     assetBundlePatterns: ['**/*'],
     plugins: [],
