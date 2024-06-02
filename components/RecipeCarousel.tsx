@@ -11,10 +11,11 @@ function RecipeCarousel({ recipes }: { recipes: Recipe[] }) {
     <View style={tw`flex-1 pb-4`}>
       <Carousel
         vertical={false}
-        loop
+        loop={false}
         width={dividedWindow}
+        overscrollEnabled={false}
         height={pageWidth / 1.65}
-        style={tw`w-[${pageWidth}]`}
+        style={tw`w-[${pageWidth}] border-2 max-w-[${pageWidth}px]`}
         data={recipes}
         renderItem={(data) => (
           <CarouselSlide index={data.index + 1} recipe={data.item} />
