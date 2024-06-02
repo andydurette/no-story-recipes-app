@@ -1,6 +1,7 @@
 import { atom } from 'jotai';
 import { atomWithStorage, createJSONStorage } from 'jotai/utils';
 import EncryptedStorage from 'react-native-encrypted-storage';
+import { Recipe } from '../types';
 
 /* eslint-disable  @typescript-eslint/no-explicit-any */
 const storage: any = createJSONStorage(() => EncryptedStorage);
@@ -15,8 +16,8 @@ const atomWithSuspense = <T>(key: string, defaultValue: T) =>
 		storage as any
 	);
 
-const testAtom = atomWithSuspense<'false' | 'true'>('true', 'false');
+const selectedLatestRecipeAtom = atomWithSuspense<Recipe | undefined>('selectedLatestRecipe', undefined);
 
 export {
-	testAtom
+	selectedLatestRecipeAtom
 }

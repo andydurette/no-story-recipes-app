@@ -1,22 +1,49 @@
 import { SafeAreaView, ScrollView, Text, View } from "react-native";
 import tw from "../lib/tailwind";
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { Image } from "expo-image";
 import HeaderBackButton from "../components/button/HeaderBackButton";
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
 import { RecipesStackParamList } from "../navigation/navigation";
+import { useAtom } from "jotai";
+import { selectedLatestRecipeAtom } from "../jotai";
+import { useFocusEffect } from "@react-navigation/native";
+import { Recipe as RecipeType } from "../types";
 
 type RecipeProps = NativeStackScreenProps<RecipesStackParamList, "Recipe">;
 
 const Recipe = ({ route, navigation }: RecipeProps) => {
   const { recipe } = route.params;
+  const [selectedLatestRecipe, setSelectedLatestRecipe] = useAtom(
+    selectedLatestRecipeAtom
+  );
+  const [activeRecipe, setActiveRecipe] = useState<RecipeType>();
+
+  const updatedLatestRecipeAtom = async () => {
+    await setActiveRecipe(selectedLatestRecipe);
+    await setSelectedLatestRecipe(undefined);
+  };
+
+  useFocusEffect(
+    useCallback(() => {
+      setActiveRecipe(recipe);
+    }, [recipe])
+  );
+
+  useFocusEffect(
+    useCallback(() => {
+      if (selectedLatestRecipe) {
+        updatedLatestRecipeAtom();
+      }
+    }, [selectedLatestRecipe])
+  );
 
   return (
     <SafeAreaView style={tw`bg-black flex-1`}>
       <View style={tw`flex flex-row items-center p-2`}>
         <HeaderBackButton label />
         <Text style={tw`text-white text-lg justify-center pl-4`}>
-          {recipe.name}
+          {activeRecipe && activeRecipe.name}
         </Text>
       </View>
 
@@ -30,11 +57,11 @@ const Recipe = ({ route, navigation }: RecipeProps) => {
             Recipe
           </Text>
         </View> */}
-        {recipe && (
-          <View style={tw`flex justify-center`} key={recipe.id}>
+        {activeRecipe && (
+          <View style={tw`flex justify-center`} key={activeRecipe.id}>
             <Image
               style={tw`w-full h-60 rounded-b-xl`}
-              source={recipe.photoURL}
+              source={activeRecipe.photoURL}
               contentFit="cover"
               transition={1000}
             />

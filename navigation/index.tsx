@@ -41,7 +41,7 @@ const BottomTabNavigator = () => {
         name="Home"
         component={HomeNavigator}
         options={{
-          unmountOnBlur: true,
+          // unmountOnBlur: true,
           headerShown: false,
           title: "Home",
           tabBarLabelStyle: tw.style("text-white"),
@@ -57,7 +57,7 @@ const BottomTabNavigator = () => {
         name="Recipes"
         component={RecipesNavigator}
         options={{
-          unmountOnBlur: true,
+          // unmountOnBlur: true,
           headerShown: false,
           title: "Recipes",
           tabBarLabelStyle: tw.style("text-white"),
@@ -73,7 +73,7 @@ const BottomTabNavigator = () => {
         name="Settings"
         component={SettingsNavigator}
         options={{
-          unmountOnBlur: true,
+          // unmountOnBlur: true,
           headerShown: false,
           title: "Settings",
           tabBarLabelStyle: tw.style("text-white"),

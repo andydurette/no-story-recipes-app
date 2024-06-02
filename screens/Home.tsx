@@ -6,7 +6,8 @@ import { Image } from "expo-image";
 import NavButton from "../components/button/NavButton";
 import { Recipe } from "../types";
 import Mixer from "../assets/icons/Mixer";
-import HorizontalCarousel from "../components/HorizontalCarousel";
+import HorizontalCarousel from "../components/RecipeCarousel";
+import RecipeCarousel from "../components/RecipeCarousel";
 // import mixer from "../assets/mixer.svg";
 
 const Home = ({ navigation }) => {
@@ -46,9 +47,12 @@ const Home = ({ navigation }) => {
             Latest Recipes
           </Text>
         </View>
-        <View>
-          <HorizontalCarousel />
-        </View>
+        {recipes && (
+          <View>
+            <RecipeCarousel recipes={recipes} />
+          </View>
+        )}
+
         {/* {recipes &&
           recipes.map((recipe) => {
             return (

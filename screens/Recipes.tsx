@@ -1,10 +1,13 @@
 import { SafeAreaView, ScrollView, Text, View } from "react-native";
 import tw from "../lib/tailwind";
 import { fetchRecipes } from "../lib/recipeApiCalls";
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { Image } from "expo-image";
 import NavButton from "../components/button/NavButton";
 import { Recipe } from "../types";
+import { useAtom } from "jotai";
+import { selectedLatestRecipeAtom } from "../jotai";
+import { useFocusEffect } from "@react-navigation/native";
 
 const Recipes = ({ navigation }) => {
   type Cuisine = "All Cuisine" | "American" | "Japanese" | "Mexican";
@@ -12,6 +15,9 @@ const Recipes = ({ navigation }) => {
   const [recipes, setRecipes] = useState<Recipe[] | undefined>();
   const [cuisine, setCuisine] = useState<Cuisine>("All Cuisine");
   const [searchInput, setSearchInput] = useState<string>("");
+  const [selectedLatestRecipe, setSelectedLatestRecipe] = useAtom(
+    selectedLatestRecipeAtom
+  );
 
   useEffect(() => {
     async function getRecipes() {
@@ -21,6 +27,19 @@ const Recipes = ({ navigation }) => {
     }
     getRecipes();
   }, []);
+
+  useFocusEffect(
+    useCallback(() => {
+      if (selectedLatestRecipe)
+        navigation.navigate("Recipe", {
+          recipe: selectedLatestRecipe,
+        });
+
+      return () => {
+        setSelectedLatestRecipe(undefined);
+      };
+    }, [selectedLatestRecipe])
+  );
 
   return (
     <SafeAreaView style={tw`bg-black flex-1`}>
