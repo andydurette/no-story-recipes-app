@@ -11,7 +11,7 @@ interface NavButtonProps {
   textStyle?: string;
 }
 
-const NavButton = ({
+const RecipeNavButton = ({
   text,
   onPress,
   external = false,
@@ -26,8 +26,8 @@ const NavButton = ({
     >
       <View
         style={tw.style(
-          "bg-primary-100 rounded-xl border-b border-gray-300 flex-grow py-3.5 px-5 flex-row justify-between",
-          borderTop && "border-t"
+          "bg-primary-200 rounded-xl border-b border-gray-300 flex-grow py-3.5 px-5 flex-row justify-between rounded-b-xl rounded-t-none",
+          borderTop && "border-t",
         )}
       >
         <Text style={tw.style("paragraph", textStyle)}>{text}</Text>
@@ -43,4 +43,4 @@ const NavButton = ({
   );
 };
 
-export default NavButton;
+export default RecipeNavButton;

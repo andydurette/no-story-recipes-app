@@ -1,11 +1,5 @@
-import React from "react";
 import { View, ActivityIndicator, Text } from "react-native";
-import {
-  Gesture,
-  GestureDetector,
-  LongPressGestureHandler,
-  TapGestureHandler,
-} from "react-native-gesture-handler";
+import { TapGestureHandler } from "react-native-gesture-handler";
 import Animated, { AnimatedProps } from "react-native-reanimated";
 import tw from "../../lib/tailwind";
 import { Recipe } from "../../types";

@@ -15,7 +15,7 @@ type RecipeProps = NativeStackScreenProps<RecipesStackParamList, "Recipe">;
 const Recipe = ({ route, navigation }: RecipeProps) => {
   const { recipe } = route.params;
   const [selectedLatestRecipe, setSelectedLatestRecipe] = useAtom(
-    selectedLatestRecipeAtom
+    selectedLatestRecipeAtom,
   );
   const [activeRecipe, setActiveRecipe] = useState<RecipeType>();
 
@@ -27,7 +27,7 @@ const Recipe = ({ route, navigation }: RecipeProps) => {
   useFocusEffect(
     useCallback(() => {
       setActiveRecipe(recipe);
-    }, [recipe])
+    }, [recipe]),
   );
 
   useFocusEffect(
@@ -35,7 +35,7 @@ const Recipe = ({ route, navigation }: RecipeProps) => {
       if (selectedLatestRecipe) {
         updatedLatestRecipeAtom();
       }
-    }, [selectedLatestRecipe])
+    }, [selectedLatestRecipe]),
   );
 
   return (

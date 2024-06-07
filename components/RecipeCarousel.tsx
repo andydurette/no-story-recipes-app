@@ -4,18 +4,18 @@ import CarouselSlide from "./carouselUtils/CarouselSlide";
 import tw from "../lib/tailwind";
 import { Recipe } from "../types";
 
-function RecipeCarousel({ recipes }: { recipes: Recipe[] }) {
-  const dividedWindow = Dimensions.get("window").width / 3;
+const RecipeCarousel = ({ recipes }: { recipes: Recipe[] }) => {
+  const dividedWindow = Dimensions.get("window").width / 3 - 2;
   const pageWidth = Dimensions.get("window").width;
   return (
-    <View style={tw`flex-1 pb-4`}>
+    <View style={tw`flex-1 pb-4 p-1`}>
       <Carousel
         vertical={false}
         loop={false}
         width={dividedWindow}
         overscrollEnabled={false}
         height={pageWidth / 1.65}
-        style={tw`w-[${pageWidth}] border-2 max-w-[${pageWidth}px]`}
+        style={tw`w-[${pageWidth - 8}px] max-w-[${pageWidth - 8}px]`}
         data={recipes}
         renderItem={(data) => (
           <CarouselSlide index={data.index + 1} recipe={data.item} />
@@ -23,6 +23,6 @@ function RecipeCarousel({ recipes }: { recipes: Recipe[] }) {
       />
     </View>
   );
-}
+};
 
 export default RecipeCarousel;

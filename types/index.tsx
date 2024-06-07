@@ -1,4 +1,6 @@
-export enum cuisineEnum {
+export type SearchCuisine = "All Cuisine" | "american" | "japanese" | "mexican";
+
+export enum CuisineEnum {
   asian = "asian",
   mexican = "mexican",
   american = "american",
@@ -7,7 +9,7 @@ export enum cuisineEnum {
 export interface Recipe {
   id: string;
   displayUrl: string;
-  cuisine: cuisineEnum;
+  cuisine: CuisineEnum;
   description: string;
   directions: string[];
   ingredients: string[];

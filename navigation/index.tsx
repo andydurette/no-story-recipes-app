@@ -33,7 +33,7 @@ const BottomTabNavigator = () => {
         header: (props) => <Header {...props} />,
         tabBarStyle: tw.style(
           Platform.OS === "ios" ? "h-23" : "h-18 pb-3",
-          "bg-primary-100 text-primary-100"
+          "bg-primary-200 text-primary-200",
         ),
       }}
     >
