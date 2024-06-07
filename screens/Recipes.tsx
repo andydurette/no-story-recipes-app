@@ -27,7 +27,7 @@ import { useFirstRender } from "../hooks/useFirstRender";
 const Recipes = ({ navigation }) => {
   const storeSearchSelections = useAtomValue(storeSearchSelectionsAtom);
   const [recipeSearchQueries, setRecipeSearchQueries] = useAtom(
-    recipeSearchQueriesAtom,
+    recipeSearchQueriesAtom
   );
   const [recipes, setRecipes] = useState<Recipe[] | undefined>();
   const [cuisine, setCuisine] = useState<SearchCuisine>("All Cuisine");
@@ -38,7 +38,6 @@ const Recipes = ({ navigation }) => {
 
   useEffect(() => {
     if (storeSearchSelections) {
-      console.log("did you run?", recipeSearchQueries);
       setSearchInput(recipeSearchQueries.search);
       setCuisine(recipeSearchQueries.cuisine);
     }
@@ -52,7 +51,7 @@ const Recipes = ({ navigation }) => {
           search: searchInput,
         });
       }
-    }, [searchInput, cuisine]),
+    }, [searchInput, cuisine])
   );
 
   useEffect(() => {
@@ -71,7 +70,7 @@ const Recipes = ({ navigation }) => {
           recipe: selectedLatestRecipe,
         });
       }
-    }, [selectedLatestRecipe]),
+    }, [selectedLatestRecipe])
   );
 
   const handleInputChange = (text: string) => {
@@ -120,10 +119,10 @@ const Recipes = ({ navigation }) => {
             items={items}
             style={{
               inputIOS: tw.style(
-                "flex py-2 px-8 mx-4 border-white bg-primary-200 rounded-md text-white rounded-3xl",
+                "flex py-2 px-8 mx-4 border-white bg-primary-200 rounded-md text-white rounded-3xl"
               ),
               inputAndroid: tw.style(
-                "flex py-2 px-3 mx-4 border-white bg-primary-200 rounded-md text-white rounded-3xl",
+                "flex py-2 px-3 mx-4 border-white bg-primary-200 rounded-md text-white rounded-3xl"
               ),
               iconContainer: tw`absolute top-1/3 right-2`,
               placeholder: tw`text-white`,
