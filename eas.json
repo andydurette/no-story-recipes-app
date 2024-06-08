@@ -5,14 +5,28 @@
   "build": {
     "development": {
       "developmentClient": true,
-      "distribution": "internal"
+      "distribution": "internal",
+      "env": {
+        "EXPO_PUBLIC_BACKEND_URL_PATH": "https://nsr.andydurette.com"
+      }
     },
     "preview": {
-      "distribution": "internal"
+      "distribution": "internal",
+      "env": {
+        "EXPO_PUBLIC_BACKEND_URL_PATH": "https://nsr.andydurette.com"
+      }
     },
-    "production": {}
+    "production": {
+      "env": {
+        "EXPO_PUBLIC_BACKEND_URL_PATH": "https://nsr.andydurette.com"
+      }
+    }
   },
   "submit": {
-    "production": {}
+    "production": {
+      "env": {
+        "EXPO_PUBLIC_BACKEND_URL_PATH": "https://nsr.andydurette.com"
+      }
+    }
   }
 }

@@ -15,7 +15,7 @@ type RecipeProps = NativeStackScreenProps<RecipesStackParamList, "Recipe">;
 const Recipe = ({ route, navigation }: RecipeProps) => {
   const { recipe } = route.params;
   const [selectedLatestRecipe, setSelectedLatestRecipe] = useAtom(
-    selectedLatestRecipeAtom,
+    selectedLatestRecipeAtom
   );
   const [activeRecipe, setActiveRecipe] = useState<RecipeType>();
 
@@ -27,7 +27,7 @@ const Recipe = ({ route, navigation }: RecipeProps) => {
   useFocusEffect(
     useCallback(() => {
       setActiveRecipe(recipe);
-    }, [recipe]),
+    }, [recipe])
   );
 
   useFocusEffect(
@@ -35,7 +35,7 @@ const Recipe = ({ route, navigation }: RecipeProps) => {
       if (selectedLatestRecipe) {
         updatedLatestRecipeAtom();
       }
-    }, [selectedLatestRecipe]),
+    }, [selectedLatestRecipe])
   );
 
   return (
@@ -68,22 +68,26 @@ const Recipe = ({ route, navigation }: RecipeProps) => {
           </View>
         )}
 
-        <View style={tw`flex justify-center m-4 `}>
-          <Text style={tw`heading1 text-white`}>Ingredients</Text>
-          {recipe &&
-            recipe.ingredients.map((r: string, i: number) => {
-              return (
-                <Text key={`${r}${i}`} style={tw`w-full h-6 text-white`}>
-                  {r}
-                </Text>
-              );
-            })}
+        <View style={tw`flex justify-center m-4`}>
+          <View style={tw`flex justify-center mb-4`}>
+            <Text style={tw`heading1 text-white mb-2`}>Ingredients</Text>
+            {recipe &&
+              recipe.ingredients.map((r: string, i: number) => {
+                return (
+                  <Text key={`${r}${i}`} style={tw`w-full h-6 text-white`}>
+                    {r}
+                  </Text>
+                );
+              })}
+          </View>
           <Text style={tw`heading1 text-white`}>Directions</Text>
           {recipe &&
             recipe.directions.map((r: string, i: number) => {
               return (
-                <View key={`${r}${i}`}>
-                  <Text style={tw`w-full text-white`}>Step {i + 1}</Text>
+                <View key={`${r}${i}`} style={tw`mb-4`}>
+                  <Text style={tw`w-full text-white heading3 my-2`}>
+                    Step {i + 1}
+                  </Text>
                   <Text style={tw`w-full text-white`}>{r}</Text>
                 </View>
               );

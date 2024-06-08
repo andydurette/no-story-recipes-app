@@ -24,11 +24,11 @@ const Home = ({ navigation }) => {
         contentContainerStyle={tw`flex-grow justify-between`}
       >
         <View
-          style={tw`flex flex-row justify-center mb-5 px-4 pt-2 content-center items-start`}
+          style={tw`flex flex-row justify-center mb-5 px-4 pt-1 content-center items-start`}
         >
           <Text
             accessibilityRole="header"
-            style={tw`heading1 px-2 text-white pt-4`}
+            style={tw`heading1 px-2 text-white pt-8`}
           >
             No <Text style={tw`text-primary-200`}>biographies</Text>, no{" "}
             <Text style={tw`text-primary-200`}>history</Text> lessons, just
@@ -38,14 +38,10 @@ const Home = ({ navigation }) => {
         <View style={tw`flex flex-row justify-center`}>
           <Mixer width={225} height={225} />
         </View>
-        <View style={tw`pl-4`}>
+        <View style={tw`pl-4 `}>
           <Text style={tw`heading3 text-white`}>Latest Recipes</Text>
         </View>
-        {recipes && (
-          <View>
-            <RecipeCarousel recipes={recipes} />
-          </View>
-        )}
+        {recipes && <RecipeCarousel recipes={recipes} />}
       </ScrollView>
     </SafeAreaView>
   );

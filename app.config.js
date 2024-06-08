@@ -4,7 +4,7 @@ dotenv.config();
 export default ({ config }) => {
   return {
     ...config,
-    name: "noStoryRecipes",
+    name: "No Story Recipes",
     slug: "no-story-recipes",
     owner: "andydurette",
     version: "1.0.0",
