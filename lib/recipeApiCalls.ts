@@ -2,7 +2,7 @@ import { Recipe } from "../types";
 
 export async function fetchRecipes(
   cuisineQuery: string | null,
-  recipeQueryString: string | null,
+  recipeQueryString: string | null
 ): Promise<Recipe[] | undefined> {
   const apiUrl = process.env.EXPO_PUBLIC_BACKEND_URL_PATH;
   let constructUrl = `${
@@ -21,15 +21,16 @@ export async function fetchRecipes(
   try {
     const res = await fetch(constructUrl);
     if (!res.ok) throw new Error("Fetch Recipes error!");
-    const data: Recipe[] = await res.json();
-    return data;
+    const data: Recipe = await res.json();
+
+    return data.recipes;
   } catch (e) {
     if (e instanceof Error) console.log(e.stack);
   }
 }
 
 export async function fetchRecipeByDisplayUrl(
-  displayUrl: string,
+  displayUrl: string
 ): Promise<Recipe | undefined> {
   try {
     const res = await fetch(
@@ -37,7 +38,7 @@ export async function fetchRecipeByDisplayUrl(
         process.env.NEXT_PUBLIC_BACKEND_URL_PATH
           ? process.env.NEXT_PUBLIC_BACKEND_URL_PATH
           : "http://localhost:4000"
-      }/recipes/displayUrl/${displayUrl}`,
+      }/recipes/displayUrl/${displayUrl}`
     );
     if (!res.ok) throw new Error("Fetch Recipes error!");
     const data: Recipe = await res.json();

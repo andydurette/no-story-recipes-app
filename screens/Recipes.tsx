@@ -79,16 +79,20 @@ const Recipes = ({ navigation }) => {
 
   const items = [
     {
-      label: "Asian",
-      value: "asian",
-    },
-    {
-      label: "Mexican",
-      value: "mexican",
-    },
-    {
       label: "American",
-      value: "american",
+      value: "AMERICAN",
+    },
+    {
+      label: "Latin American",
+      value: "LATIN AMERICAN",
+    },
+    {
+      label: "European",
+      value: "EUROPEAN",
+    },
+    {
+      label: "Asian",
+      value: "ASIAN",
     },
   ];
 
@@ -177,7 +181,7 @@ const Recipes = ({ navigation }) => {
               </TapGestureHandler>
             );
           })}
-        {recipes?.length === 0 && (
+        {recipes && recipes?.length === 0 && (
           <View style={tw`flex min-h-full items-center justify-center`}>
             <Text style={tw`text-white bottom-0 p-2 min-h-14 text-xl`}>
               {searchInput

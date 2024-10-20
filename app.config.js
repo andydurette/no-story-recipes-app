@@ -7,7 +7,7 @@ export default ({ config }) => {
     name: "No Story Recipes",
     slug: "no-story-recipes",
     owner: "andydurette",
-    version: "1.0.1",
+    version: "1.0.3",
     versionName: "",
     versionCode: "",
     orientation: "portrait",
@@ -34,7 +34,7 @@ export default ({ config }) => {
         backgroundColor: "#FFFFFF",
       },
       package: "com.andydurette.nostoryrecipes",
-      versionCode: 2
+      versionCode: 5
     },
     web: {
       favicon: "./assets/favicon.png",
