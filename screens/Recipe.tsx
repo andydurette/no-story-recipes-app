@@ -9,15 +9,18 @@ import { useAtom } from "jotai";
 import { selectedLatestRecipeAtom } from "../jotai";
 import { useFocusEffect } from "@react-navigation/native";
 import { Recipe as RecipeType } from "../types";
+import { fetchRecipeByDisplayUrl } from "../lib/recipeApiCalls";
 
 type RecipeProps = NativeStackScreenProps<RecipesStackParamList, "Recipe">;
 
-const Recipe = ({ route, navigation }: RecipeProps) => {
+const Recipe = ({ route }: RecipeProps) => {
   const { recipe } = route.params;
+
   const [selectedLatestRecipe, setSelectedLatestRecipe] = useAtom(
     selectedLatestRecipeAtom
   );
   const [activeRecipe, setActiveRecipe] = useState<RecipeType>();
+  const [fullRecipe, setFullRecipe] = useState<RecipeType>();
 
   const updatedLatestRecipeAtom = async () => {
     await setActiveRecipe(selectedLatestRecipe);
@@ -38,6 +41,20 @@ const Recipe = ({ route, navigation }: RecipeProps) => {
     }, [selectedLatestRecipe])
   );
 
+  const setdata = async () => {
+    if (activeRecipe) {
+      const data = await fetchRecipeByDisplayUrl(activeRecipe?.displayUrl);
+      console.log("data", data);
+      setFullRecipe(data);
+    }
+  };
+
+  useFocusEffect(
+    useCallback(() => {
+      setdata();
+    }, [activeRecipe])
+  );
+
   return (
     <SafeAreaView style={tw`bg-black flex-1`}>
       <View style={tw`flex flex-row items-center p-2`}>
@@ -51,47 +68,64 @@ const Recipe = ({ route, navigation }: RecipeProps) => {
         persistentScrollbar
         contentContainerStyle={tw`flex-grow justify-between`}
       >
-        <View style={tw`flex flex-row justify-center`}></View>
-        {/* <View style={tw`flex-row justify-between mb-5 p-2`}>
-          <Text accessibilityRole="header" style={tw`heading3 text-white`}>
-            Recipe
-          </Text>
-        </View> */}
-        {activeRecipe && (
-          <View style={tw`flex justify-center`} key={activeRecipe.id}>
+        {fullRecipe && (
+          <View style={tw`flex justify-center`} key={fullRecipe.id}>
             <Image
               style={tw`w-full h-60 rounded-b-xl`}
-              source={activeRecipe.photoURL}
+              source={fullRecipe.photoURL}
               contentFit="cover"
               transition={1000}
             />
           </View>
         )}
 
-        <View style={tw`flex justify-center m-4`}>
-          <View style={tw`flex justify-center mb-4`}>
-            <Text style={tw`heading1 text-white mb-2`}>Ingredients</Text>
-            {recipe &&
-              recipe.ingredients.map((r: string, i: number) => {
-                return (
-                  <Text key={`${r}${i}`} style={tw`w-full h-6 text-white`}>
-                    {r}
-                  </Text>
-                );
-              })}
-          </View>
-          <Text style={tw`heading1 text-white`}>Directions</Text>
-          {recipe &&
-            recipe.directions.map((r: string, i: number) => {
-              return (
-                <View key={`${r}${i}`} style={tw`mb-4`}>
-                  <Text style={tw`w-full text-white heading3 my-2`}>
-                    Step {i + 1}
-                  </Text>
-                  <Text style={tw`w-full text-white`}>{r}</Text>
+        {/* {/* <View style={tw`flex justify-center m-4`}> */}
+        <View style={tw`flex justify-center mb-4 p-2`}>
+          <Text style={tw`heading1 text-white mb-2`}>Ingredients</Text>
+          {fullRecipe &&
+            fullRecipe.directionsAndIngredientsList.map(
+              (ingredients: any, i: number) => (
+                <View key={i} style={tw`mb-4`}>
+                  {fullRecipe &&
+                    fullRecipe.directionsAndIngredientsList.length > 1 && (
+                      <Text style={tw`w-full text-white heading3 my-2`}>
+                        {ingredients.for}
+                      </Text>
+                    )}
+
+                  {ingredients.ingredientList.map(
+                    (r: string, index: number) => (
+                      <Text key={`${r}${index}`} style={tw`w-full text-white`}>
+                        {r}
+                      </Text>
+                    )
+                  )}
                 </View>
-              );
-            })}
+              )
+            )}
+        </View>
+        <View style={tw`flex justify-center mb-4 p-2`}>
+          <Text style={tw`heading1 text-white`}>Directions</Text>
+          {fullRecipe &&
+            fullRecipe.directionsAndIngredientsList.map(
+              (directions: any, i: number) => (
+                <View key={i} style={tw`mb-4`}>
+                  {fullRecipe &&
+                    fullRecipe.directionsAndIngredientsList.length > 1 && (
+                      <Text style={tw`w-full text-white heading3 my-2`}>
+                        {directions.for}
+                      </Text>
+                    )}
+                  {directions.directionList.map((r: string, index: number) => (
+                    <View key={`${r}${index}`} style={tw`mb-2`}>
+                      <Text
+                        style={tw`w-full text-white`}
+                      >{`${index + 1}. ${r}`}</Text>
+                    </View>
+                  ))}
+                </View>
+              )
+            )}
         </View>
       </ScrollView>
     </SafeAreaView>

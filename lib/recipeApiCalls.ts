@@ -32,14 +32,12 @@ export async function fetchRecipes(
 export async function fetchRecipeByDisplayUrl(
   displayUrl: string
 ): Promise<Recipe | undefined> {
+  const apiUrl = process.env.EXPO_PUBLIC_BACKEND_URL_PATH;
+  let constructUrl = `${
+    apiUrl ? apiUrl : "http://localhost:4000"
+  }/recipes/displayUrl/${displayUrl}`;
   try {
-    const res = await fetch(
-      `${
-        process.env.NEXT_PUBLIC_BACKEND_URL_PATH
-          ? process.env.NEXT_PUBLIC_BACKEND_URL_PATH
-          : "http://localhost:4000"
-      }/recipes/displayUrl/${displayUrl}`
-    );
+    const res = await fetch(constructUrl);
     if (!res.ok) throw new Error("Fetch Recipes error!");
     const data: Recipe = await res.json();
     return data;
